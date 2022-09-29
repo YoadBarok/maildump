@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface MailboxService {
 
-    List<com.maildump.maildump.models.Mailbox> getAllMailboxes();
+    List<Mailbox> getAllMailboxes();
+
     List<Mailbox> getAllMailboxesByUserId(Long userId);
 }

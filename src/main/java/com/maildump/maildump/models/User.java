@@ -1,5 +1,6 @@
 package com.maildump.maildump.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,7 +9,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="USER")
+@Table(name = "USER")
 @NoArgsConstructor
 @Getter
 @Setter
@@ -20,7 +21,7 @@ public class User {
     private String name;
     private String email;
     private String password;
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy = "user")
     private List<Mailbox> mailboxes;
     @OneToMany(mappedBy = "user")
     private List<Filter> filters;

@@ -1,14 +1,14 @@
 package com.maildump.maildump.models;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.servlet.View;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -27,7 +27,9 @@ public class Filter {
     private String senders;
     private Long timePeriod;
     @ManyToOne(cascade = CascadeType.DETACH)
-    @JsonIgnore
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonProperty("userId")
     private User user;
 
 }

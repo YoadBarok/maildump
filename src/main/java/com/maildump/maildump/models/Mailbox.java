@@ -1,6 +1,6 @@
 package com.maildump.maildump.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,16 +21,18 @@ public class Mailbox {
     private String address;
     private String password;
     private String name;
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(cascade = {CascadeType.ALL})
     @JsonIgnore
     @JoinTable(
             name = "Mailbox_Filter",
-            joinColumns = { @JoinColumn(name = "mailbox_id") },
-            inverseJoinColumns = { @JoinColumn(name = "filter_id") }
+            joinColumns = {@JoinColumn(name = "mailbox_id")},
+            inverseJoinColumns = {@JoinColumn(name = "filter_id")}
     )
     Set<Filter> filters = new HashSet<>();
     @ManyToOne(cascade = CascadeType.DETACH)
-    @JsonIgnore
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonProperty("userId")
     private User user;
 
 
