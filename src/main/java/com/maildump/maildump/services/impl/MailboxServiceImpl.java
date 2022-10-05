@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MailboxServiceImpl implements com.maildump.maildump.services.MailboxService {
@@ -25,5 +26,10 @@ public class MailboxServiceImpl implements com.maildump.maildump.services.Mailbo
     @Override
     public List<Mailbox> getAllMailboxesByUserId(Long userId) {
         return this.mailboxRepository.findAllByUserId(userId);
+    }
+
+    @Override
+    public Optional<Mailbox> getMailboxById(Long id) {
+        return this.mailboxRepository.findById(id);
     }
 }
